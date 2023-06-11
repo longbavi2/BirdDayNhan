@@ -1,6 +1,7 @@
 const contentLetterSrart_actived = "Bấm Vào Hộp Quà Đi ạ" //Lời mở đầu cho bức thư
-const mainContentLetter = "Thiên thần sinh nhật vui vẻ nhaa .Tuổi mới luôn mạnh khỏe,vui vẻ và nhiều tiền nhá :3" //Nội dung của bức thư
-
+const mainContentLetter = "Chúc chị iu tuổi mới thật nhiều sức khỏe và niềm vui !Hy vọng những điều chị mong muốn đều sẽ đạt được, những điều chị đạt được là những điều tuyệt vời nhất ạ" //Nội dung của bức thư
+var count1 = 0;
+var count2 = 0;
 // Gắn 1 đường link ảnh bất kì
 let imgStart = document.querySelector(".myAI"); //Hình ảnh xuất hiện trong lời mở đầu của bức thư
 imgStart.src = "./img/cute-young-boy-kid-wearing-vest-and-hat-free-png.png";
@@ -12,42 +13,48 @@ imgLetter.src = "./img/b4bbdb54b7152338d7143cb444a77f09.png"; //Hình ảnh xu�
 const splitContentLetterSrart_actived = contentLetterSrart_actived.split("");
 
 document.querySelector(".sticker").addEventListener("click", function () { //Hiệu ứng gõ chữ cho phần mở đầu của bức thư
-    const note =document.querySelector(".note");
-    note.classList.add("close-p");
-    document.querySelector(".contentLetter").innerHTML = "";
-    document.querySelector(".startLetter").classList.add("active")
-    setTimeout(() => {
-        splitContentLetterSrart_actived.forEach((val, index) => {
-            setTimeout(() => {
-                document.querySelector(".contentLetter").innerHTML += val;
-                if (index == contentLetterSrart_actived.length - 1) {
-                    setTimeout(() => {
-                        document.querySelector(".recieve").setAttribute("style", "opacity: 1; transition: .5s") 
-                    }, 1000)
-                }
-            }, 50 * index)
-        })
-    }, 1000)
+    count1++;
+    if (count1 === 1) {
+        const note = document.querySelector(".note");
+        note.classList.add("close-p");
+        document.querySelector(".contentLetter").innerHTML = "";
+        document.querySelector(".startLetter").classList.add("active")
+        setTimeout(() => {
+            splitContentLetterSrart_actived.forEach((val, index) => {
+                setTimeout(() => {
+                    document.querySelector(".contentLetter").innerHTML += val;
+                    if (index == contentLetterSrart_actived.length - 1) {
+                        setTimeout(() => {
+                            document.querySelector(".recieve").setAttribute("style", "opacity: 1; transition: .5s")
+                        }, 1000)
+                    }
+                }, 50 * index)
+            })
+        }, 1000)
+    }
 })
 
 document.querySelector("#mess").addEventListener("change", function () { //Hiệu ứng gõ chữ cho phần nội dung của bức thư
-    if (this.checked == true) {
-        document.querySelector(".content").classList.add("actived")
-        const splitMainContentLetter = mainContentLetter.split("");
+    count2++;
+    if (count2 === 1) {
+        if (this.checked == true) {
+            document.querySelector(".content").classList.add("actived")
+            const splitMainContentLetter = mainContentLetter.split("");
 
-        splitMainContentLetter.forEach((val, index) => {
-            setTimeout(() => {
-                document.querySelector(".mainContent").innerHTML += val;
-                if (index == mainContentLetter.length - 1) {
-                    document.querySelector(".img1").setAttribute("style", "opacity: 1; transition: .5s")
-                }
-            }, 50 * index)
-        })
+            splitMainContentLetter.forEach((val, index) => {
+                setTimeout(() => {
+                    document.querySelector(".mainContent").innerHTML += val;
+                    if (index == mainContentLetter.length - 1) {
+                        document.querySelector(".img1").setAttribute("style", "opacity: 1; transition: .5s")
+                    }
+                }, 50 * index)
+            })
 
-    } else {
-        document.querySelector(".content").classList.remove("actived")
-        document.querySelector(".img1").setAttribute("style", "opacity: 0; transition: .5s")
-        document.querySelector(".mainContent").innerHTML = "";
+        } else {
+            document.querySelector(".content").classList.remove("actived")
+            document.querySelector(".img1").setAttribute("style", "opacity: 0; transition: .5s")
+            document.querySelector(".mainContent").innerHTML = "";
+        }
     }
 })
 
@@ -61,7 +68,7 @@ document.querySelector(".recieve").addEventListener("click", () => {
         document.querySelector(".startForm").classList.add("close");
         setTimeout(() => {
             document.querySelector(".startForm").setAttribute("style", "bottom: 100%");
-            
+
             let getTypeDevice = document.documentElement.clientWidth;
             if (getTypeDevice <= 768) {
                 createLight(20)
