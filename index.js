@@ -1,5 +1,5 @@
 const contentLetterSrart_actived = "Bấm Vào Hộp Quà Đi ạ" //Lời mở đầu cho bức thư
-const mainContentLetter = "Chúc chị iu tuổi mới thật nhiều sức khỏe và niềm vui! Hy vọng những điều chị mong muốn đều sẽ đạt được, những điều chị đạt được là những điều tuyệt vời nhất ạ" //Nội dung của bức thư
+const mainContentLetter = "Chúc chị iu tuổi mới thật nhiều sức khỏe và niềm vui! Hy vọng những điều chị mong muốn đều sẽ đạt được, những điều chị đạt được đều là những điều tuyệt vời nhất ạ" //Nội dung của bức thư
 var count1 = 0;
 var count2 = 0;
 var count3 = 0;
@@ -61,27 +61,27 @@ document.querySelector("#mess").addEventListener("change", function () { //Hiệ
 
 document.querySelector(".recieve").addEventListener("click", () => {
     count3++;
-    if (count3 === 1) {
-        const audio = new Audio('./audio/y2mate.com - Chúc Mừng Sinh Nhật Remix  Happy Birthday Remix  Happy Birthday Song  Sinh Nhật Remix.mp3');
-        audio.currentTime = 15;
-        // Phát âm thanh
-        audio.play();
-        document.querySelector(".startLetter").classList.add("close");
+   if(count3==1){
+    const audio = new Audio('./audio/y2mate.com - Chúc Mừng Sinh Nhật Remix  Happy Birthday Remix  Happy Birthday Song  Sinh Nhật Remix.mp3');
+    audio.currentTime = 15;
+    // Phát âm thanh
+    audio.play();
+    document.querySelector(".startLetter").classList.add("close");
+    setTimeout(() => {
+        document.querySelector(".startForm").classList.add("close");
         setTimeout(() => {
-            document.querySelector(".startForm").classList.add("close");
-            setTimeout(() => {
-                document.querySelector(".startForm").setAttribute("style", "bottom: 100%");
+            document.querySelector(".startForm").setAttribute("style", "bottom: 100%");
 
-                let getTypeDevice = document.documentElement.clientWidth;
-                if (getTypeDevice <= 768) {
-                    createLight(20)
-                } else {
-                    createLight(40)
-                }
+            let getTypeDevice = document.documentElement.clientWidth;
+            if (getTypeDevice <= 768) {
+                createLight(20)
+            } else {
+                createLight(40)
+            }
 
-            }, 500)
         }, 500)
-    }
+    }, 500)
+   }
 })
 
 // Animation Drop light _ Tạo hiệu ứng kim tuyến rơi
